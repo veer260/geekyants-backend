@@ -30,12 +30,12 @@ authRouter.post('/login', async(req, res) => {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
 
     // Set token as HTTP-only cookie
-    res.cookie('token', token, {
-        httpOnly: true,
-  secure: false, // Must be false because your frontend is HTTP localhost
-  sameSite: 'lax', // Change from 'none' to 'lax'
+  res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // true on HTTPS
+  sameSite: 'none', // <-- required for cross-site cookies
   maxAge: 24 * 60 * 60 * 1000
-    });
+});
 
     // Return user data for localStorage (excluding password)
     res.status(200).json({
