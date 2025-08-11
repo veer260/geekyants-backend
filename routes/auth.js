@@ -32,9 +32,9 @@ authRouter.post('/login', async(req, res) => {
     // Set token as HTTP-only cookie
     res.cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Use secure in production
-        sameSite: 'strict',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  secure: false, // Must be false because your frontend is HTTP localhost
+  sameSite: 'lax', // Change from 'none' to 'lax'
+  maxAge: 24 * 60 * 60 * 1000
     });
 
     // Return user data for localStorage (excluding password)
