@@ -14,7 +14,7 @@ const PORT = 3000;
 app.use('/', express.json());
 app.use('/', cookieParser());
 app.use(cors({
-  origin: ['http://localhost:5173','https://geekyants-frontend-qian.vercel.app'],  // Your frontend URL
+  origin: ['http://localhost:5173','https://geekyants-frontend.vercel.app/', 'https://geekyants-frontend-qian.vercel.app'],  // Your frontend URL
   credentials: true, // Allow cookies to be sent
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
